@@ -37,7 +37,6 @@ mvn install:install-file -Dfile=pCloudy-java-connector-11.0.3-jar-with-dependenc
 ## Installation
 
 Pre-equisites
-- node@16
 - java 11
 - appium 1.20.2
 - android studio
@@ -50,16 +49,10 @@ Pre-equisites
 
 ## commands to install
 
-- brew install node@16
 - brew install openjdk@11
 - npm install -g appium@1.20.2
-- npm install @wdio/cli
-- npx wdio config
 - xcode-select --install
 - brew install carthage, required for webdriver agent
-- npm i eslint --save-dev
-- npm install eslint-plugin-wdio --save-dev
-- npm install pcloudy-appium-client --save
 - npm install -g appium-doctor
 
 ## Environment variables
@@ -71,7 +64,6 @@ Pre-equisites
 
 ## checks after installation
 
-- node -v
 - appium -v
 - java --version
 
