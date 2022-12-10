@@ -1,9 +1,5 @@
 {
-  "nricDetails": {
-    "username": "S8184457G",
-    "mobile": "88888888"
-  },
-  "someOtherDetails": {
+  "someDetails": {
     "username": "abcd",
     "mobile": "abcd"
   }

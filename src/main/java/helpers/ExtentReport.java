@@ -17,7 +17,7 @@ public class ExtentReport {
         if (extent == null) {
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(filePath);
             htmlReporter.config().setDocumentTitle("Appium-Mobile-Suite");
-            htmlReporter.config().setReportName("HP365-Mobile-Suite-Report");
+            htmlReporter.config().setReportName("Mobile-Suite-Report");
             htmlReporter.config().setTheme(Theme.STANDARD);
             extent = new ExtentReports();
             extent.attachReporter(htmlReporter);
