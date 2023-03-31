@@ -4,21 +4,25 @@
     <listeners>
         <listener class-name="helpers.TestListeners"></listener>
     </listeners>
-    <parameter name="deviceName" value="Pixel_6_Pro"></parameter>
-    <parameter name="platformVersion" value="11"></parameter>
+    <parameter name="deviceName" value="Pixel5"></parameter>
+    <parameter name="platformVersion" value="11.0"></parameter>
     <parameter name="platformName" value="Android"></parameter>
     <parameter name="virtualDevice" value="true"></parameter>
-    <test name="Pixel_6_Pro">
+    <test name="Pixel5">
         <classes>
-            <class name="hp365.HomeDashboard"/>
+            <class name="workshop.HomeDashboard"/>
         </classes>
     </test>
-    <test name="Nexus_6">
-        <parameter name="deviceName" value="Nexus_6"></parameter>
+
+    <!--<parameter name="deviceName" value="Nexus6"></parameter>
+    <parameter name="platformVersion" value="11.0"></parameter>
+    <parameter name="platformName" value="Android"></parameter>
+    <parameter name="virtualDevice" value="true"></parameter>
+    <test name="Nexus6">
         <classes>
-            <class name="hp365.HomeDashboard"/>
+            <class name="workshop.HomeDashboard2"/>
         </classes>
-    </test>
+    </test>-->
 </suite>
 
 

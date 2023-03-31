@@ -10,25 +10,25 @@
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="virtualDevice" value="false"></parameter>
         <classes>
-            <class name="hp365.HomeDashboard"/>
+            <class name="workshop.HomeDashboard"/>
         </classes>
     </test>
-    <test name="SAMSUNG_GalaxyS22">
+    <!--<test name="SAMSUNG_GalaxyS22">
         <parameter name="deviceName" value="SAMSUNG_GalaxyS22_android_12.0.0_9bbaf"></parameter>
         <parameter name="platformVersion" value="12.0.0"></parameter>
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="virtualDevice" value="false"></parameter>
         <classes>
-            <class name="hp365.HomeDashboard"/>
+            <class name="workshop.HomeDashboard"/>
         </classes>
-    </test>
+    </test>-->
     <!--<test name="APPLE_iPhoneXR_iOS_14.4.0_f1c43">
         <parameter name="deviceName" value="APPLE_iPhoneXR_iOS_14.4.0_f1c43"></parameter>
         <parameter name="platformVersion" value="14.4.0"></parameter>
         <parameter name="platformName" value="ios"></parameter>
         <parameter name="virtualDevice" value="false"></parameter>
         <classes>
-            <class name="hp365.HomeDashboard"/>
+            <class name="workshop.HomeDashboard"/>
         </classes>
     </test>-->
 </suite>

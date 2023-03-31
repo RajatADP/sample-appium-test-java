@@ -3,6 +3,7 @@ package helpers;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -19,8 +20,9 @@ public class BaseTest {
     protected static HelperMethods helperMethods;
     protected static ThreadLocal<String> deviceName = new ThreadLocal<>();
     protected static ThreadLocal<String> platformName = new ThreadLocal<>();
-    protected LoginPage loginPage;
     protected HomePage homePage;
+
+    protected AppiumDriverLocalService service;
 
     public AppiumDriver getDriver() {
         return driver.get();
@@ -51,14 +53,18 @@ public class BaseTest {
     public void prepareTest(String deviceName, String platformVersion, String platformName, String virtualDevice) {
         helperMethods = new HelperMethods();
         AppiumDriver driver;
+
         setPlatformName(platformName);
         setDeviceName(deviceName);
         try {
+            service = helperMethods.startAppiumServer();
+            service.start();
+
             prop = helperMethods.readPropertiesFile("src/main/resources/config.properties");
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("platformName", platformName);
-            capabilities.setCapability("appiumVersion", "1.20.2");
+            capabilities.setCapability("appiumVersion", "2.0.0-beta.48");
             capabilities.setCapability("newCommandTimeout", prop.getProperty("newCommandTimeout"));
             capabilities.setCapability("autoGrantPermissions", prop.getProperty("autoGrantPermissions"));
             if (virtualDevice.equalsIgnoreCase("false")) {
@@ -71,19 +77,20 @@ public class BaseTest {
                 capabilities.setCapability("pCloudy_EnableVideo", prop.getProperty("pcloudy_enablevideo"));
                 capabilities.setCapability("pCloudy_EnablePerformanceData", prop.getProperty("pcloudy_enableperformancedata"));
                 capabilities.setCapability("pCloudy_EnableDeviceLogs", prop.getProperty("pcloudy_enabledevicelogs"));
+                capabilities.setCapability("pCloudy_ApplicationName", "your_app.apk");
             }
             switch (platformName) {
                 case "Android":
                     capabilities.setCapability("platformVersion", platformVersion);
                     capabilities.setCapability("automationName", prop.getProperty("android_automation_name"));
-                    capabilities.setCapability("pCloudy_ApplicationName", "your_app.apk");
-                    capabilities.setCapability("appPackage", "packageName_of_your_app");
-                    capabilities.setCapability("appActivity", "appActivity_of_your_app");
+
+                    capabilities.setCapability("appPackage", "");
+                    capabilities.setCapability("appActivity", "");
                     if (virtualDevice.equalsIgnoreCase("true")) {
                         capabilities.setCapability("avd", deviceName);
                         capabilities.setCapability("avdLaunchTimeout", prop.getProperty("launchTimeout"));
                         capabilities.setCapability("app", prop.getProperty("android_app_path"));
-                        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+                        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
                     } else
                         driver = new AndroidDriver(new URL("https://device.pcloudy.com/appiumcloud/wd/hub"), capabilities);
                     break;
@@ -118,6 +125,7 @@ public class BaseTest {
     void tearDown() {
         if (getDriver() != null) {
             getDriver().quit();
+            service.stop();
         }
     }
 }
