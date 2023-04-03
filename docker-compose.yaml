@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  jenkins:
+    build:
+      dockerfile: Dockerfile
+    networks:
+      main:
+    ports:
+      - "8080:8080"
+    container_name: jenkins
+    # uncomment for docker in docker
+    # privileged: true
+    volumes:
+      - jenkins-data:/var/jenkins_home
+
+networks:
+  main:
+volumes:
+  jenkins-data:

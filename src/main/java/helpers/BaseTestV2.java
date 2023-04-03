@@ -66,23 +66,40 @@ public class BaseTestV2 {
         setPlatformName(platformName);
         setDeviceName(deviceName);
         try {
-            service = startAppiumServer();
-            service.start();
+//            service = startAppiumServer();
+//            service.start();
 
             prop = readPropertiesFile("src/main/resources/config.properties");
 
             switch (platformName) {
                 case "Android":
                     UiAutomator2Options options = new UiAutomator2Options();
-                    options.setApp(prop.getProperty("android_app_path"));
-                    options.setPlatformVersion(platformVersion);
-                    options.setAppPackage(prop.getProperty("android_package"));
-                    options.setAppActivity(prop.getProperty("android_activity"));
+//                    options.setApp(prop.getProperty("android_app_path_cloud"));
+//                    options.setPlatformVersion(platformVersion);
+//                    options.setAppPackage(prop.getProperty("android_package"));
+//                    options.setAppActivity(prop.getProperty("android_activity"));
                     //real android device connect to laptop
                     if (virtualDevice.equalsIgnoreCase("false")) {
-                        options.setDeviceName("Android Device");
-                        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
-                        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//                        options.setDeviceName("Android Device");
+//                        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+//                        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+                        options.setCapability("pCloudy_Username", "rajat.mishra@thoughtworks.com");
+                        options.setCapability("pCloudy_ApiKey", "fnqhxwjsvsrzkdsmgzc7r4x9");
+                        options.setCapability("pCloudy_DurationInMinutes", 12);
+                        options.setCapability("newCommandTimeout", 600);
+                        options.setCapability("launchTimeout", 90000);
+                        options.setCapability("pCloudy_DeviceFullName", "SAMSUNG_GalaxyNote20_Android_13.0.0_765c8");
+                        options.setCapability("platformVersion", "13.0.0");
+                        options.setCapability("platformName", "Android");
+                        options.setCapability("automationName", "uiautomator2");
+                        options.setCapability("pCloudy_ApplicationName", "ApiDemos-debug.apk");
+                        options.setCapability("appPackage", prop.getProperty("android_package"));
+                        options.setCapability("appActivity", prop.getProperty("android_activity"));
+                        options.setCapability("pCloudy_WildNet", "false");
+                        options.setCapability("pCloudy_EnableVideo", "true");
+                        options.setCapability("pCloudy_EnablePerformanceData", "true");
+                        options.setCapability("pCloudy_EnableDeviceLogs", "false");
                     }
 
                     if (virtualDevice.equalsIgnoreCase("true")) {
@@ -140,7 +157,7 @@ public class BaseTestV2 {
     void tearDown() {
         if (getDriver() != null) {
             getDriver().quit();
-            service.stop();
+//            service.stop();
         }
     }
 

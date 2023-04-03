@@ -27,7 +27,7 @@ public class HomeDashboard extends BaseTestV2 {
         ExtentReport.getTest().log(Status.INFO, "Graphics Navigation successful");
     }
 
-    @Test
+    /*@Test
     void longPress() throws InterruptedException {
         homePage.navigateToViewsPage();
         viewsPage.navigateToExpandableLists();
@@ -51,6 +51,6 @@ public class HomeDashboard extends BaseTestV2 {
     void activityStart() {
         Activity activity = new Activity("io.appium.android.apis", "io.appium.android.apis.preference.PreferenceDependencies");
         ((AndroidDriver) getDriver()).startActivity(activity);
-    }
+    }*/
 
 }

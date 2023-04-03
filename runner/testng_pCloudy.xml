@@ -4,13 +4,13 @@
     <listeners>
         <listener class-name="helpers.TestListeners"></listener>
     </listeners>
-    <test name="GOOGLE_Pixel4XL">
-        <parameter name="deviceName" value="GOOGLE_Pixel4XL_android_10.0.0_7263e"></parameter>
-        <parameter name="platformVersion" value="10.0.0"></parameter>
+    <test name="SAMSUNG_GalaxyNote20">
+        <parameter name="deviceName" value="SAMSUNG_GalaxyNote20_Android_13.0.0_765c8"></parameter>
+        <parameter name="platformVersion" value="13.0.0"></parameter>
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="virtualDevice" value="false"></parameter>
         <classes>
-            <class name="workshop.HomeDashboardIOS"/>
+            <class name="workshop.HomeDashboard"/>
         </classes>
     </test>
     <!--<test name="SAMSUNG_GalaxyS22">
