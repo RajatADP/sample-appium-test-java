@@ -86,7 +86,7 @@ public class BaseTestV2 {
 
                         options.setCapability("pCloudy_Username", "rajat.mishra@thoughtworks.com");
                         options.setCapability("pCloudy_ApiKey", "fnqhxwjsvsrzkdsmgzc7r4x9");
-                        options.setCapability("pCloudy_DurationInMinutes", 12);
+                        options.setCapability("pCloudy_DurationInMinutes", 5);
                         options.setCapability("newCommandTimeout", 600);
                         options.setCapability("launchTimeout", 90000);
                         options.setCapability("pCloudy_DeviceFullName", "SAMSUNG_GalaxyNote20_Android_13.0.0_765c8");
