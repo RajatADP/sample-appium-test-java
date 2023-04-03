@@ -17,7 +17,7 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/RajatADP/sample-appium-test-java.git']])
             }
         }
-        stage('Run Contract Tests') {
+        stage('Install pcloudy Jar') {
                     steps {
                         dir('src/main/java/pcoudyConnector') {
                         sh 'mvn install:install-file -Dfile=pCloudy-java-connector-11.0.7-jar-with-dependencies.jar -DgroupId=pCloudy-java-connector -DartifactId=pCloudy-java-connector -Dversion=11.0.7 -Dpackaging=jar'
