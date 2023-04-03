@@ -19,8 +19,15 @@ pipeline {
         }
         stage('Run Contract Tests') {
                     steps {
-                            sh 'mvn clean test'
+                        dir('src/main/java/pcoudyConnector') {
+                        sh 'mvn install:install-file -Dfile=pCloudy-java-connector-11.0.7-jar-with-dependencies.jar -DgroupId=pCloudy-java-connector -DartifactId=pCloudy-java-connector -Dversion=11.0.7 -Dpackaging=jar'
+                        }
                     }
+        }
+        stage('Run Contract Tests') {
+            steps {
+                  sh 'mvn clean test'
+            }
         }
 
     }
