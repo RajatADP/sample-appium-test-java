@@ -38,7 +38,7 @@ mvn install:install-file -Dfile=pCloudy-java-connector-11.0.3-jar-with-dependenc
 
 Pre-equisites
 - java 11
-- appium 1.20.2
+- appium 2.x
 - android studio
 - xcode
 - xcode command line tools
@@ -50,7 +50,7 @@ Pre-equisites
 ## commands to install
 
 - brew install openjdk@11
-- npm install -g appium@1.20.2
+- npm install -g appium@next
 - xcode-select --install
 - brew install carthage, required for webdriver agent
 - npm install -g appium-doctor
@@ -69,7 +69,11 @@ Pre-equisites
 
 ## Run tests
 
+# Emulator
 - mvn test
+
+# Android Real device connect to laptop
+- change virtualDevice = false and platformVersion = device version
 
 
 ## get simulator name
@@ -87,6 +91,9 @@ adb uninstall io.appium.uiautomator2.server
 adb uninstall io.appium.uiautomator2.server.test
 adb uninstall io.appium.unlock
 adb uninstall io.appium.settings
+
+
+
 
 
 

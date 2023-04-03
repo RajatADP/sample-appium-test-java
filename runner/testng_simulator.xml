@@ -4,22 +4,15 @@
     <listeners>
         <listener class-name="helpers.TestListeners"></listener>
     </listeners>
-    <parameter name="deviceName" value="Pixel5"></parameter>
-    <parameter name="platformVersion" value="11.0"></parameter>
-    <parameter name="platformName" value="Android"></parameter>
+    <parameter name="deviceName" value="iPhone 14 Pro"></parameter>
+    <parameter name="platformVersion" value="16.2"></parameter>
+    <parameter name="platformName" value="ios"></parameter>
     <parameter name="virtualDevice" value="true"></parameter>
-    <test name="Pixel5">
+    <test name="iPhone 14 Pro">
         <classes>
-            <class name="workshop.HomeDashboard"/>
+            <class name="workshop.HomeDashboardIOS"/>
         </classes>
     </test>
-
-    <!--<test name="Pixel5">
-        <classes>
-            <class name="workshop.HomeDashboard"/>
-        </classes>
-    </test>-->
-
 
 </suite>
 

@@ -10,7 +10,7 @@
         <parameter name="platformName" value="Android"></parameter>
         <parameter name="virtualDevice" value="false"></parameter>
         <classes>
-            <class name="workshop.HomeDashboard"/>
+            <class name="workshop.HomeDashboardIOS"/>
         </classes>
     </test>
     <!--<test name="SAMSUNG_GalaxyS22">

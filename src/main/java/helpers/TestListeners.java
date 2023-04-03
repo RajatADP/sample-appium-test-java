@@ -24,7 +24,7 @@ public class TestListeners implements ITestListener{
             result.getThrowable().printStackTrace(pw);
         }
         ExtentReport.getTest().log(Status.FAIL, "Test Failed");
-        BaseTest baseTest = new BaseTest();
+        BaseTestV2 baseTest = new BaseTestV2();
         File file = baseTest.getDriver().getScreenshotAs(OutputType.FILE);
 
         byte[] encoded = null;
@@ -45,7 +45,7 @@ public class TestListeners implements ITestListener{
 
     @Override
     public void onTestStart(ITestResult result) {
-        BaseTest base = new BaseTest();
+        BaseTestV2 base = new BaseTestV2();
         ExtentReport.startTest(result.getName(), result.getMethod().getDescription())
                 .assignCategory(base.getPlatformName() + "_" + base.getDeviceName());
     }

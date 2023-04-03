@@ -1,16 +1,17 @@
 package helpers;
 
 import com.aventstack.extentreports.Status;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.pagefactory.AndroidBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
-import io.appium.java_client.service.local.flags.ServerArgument;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,33 +22,61 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Properties;
 
-public class HelperMethods extends BaseTest {
+public class HelperMethods {
+    private AppiumDriver driver;
+    public HelperMethods(AppiumDriver driver) {
+        this.driver = driver;
+    }
 
-//    public void waitForVisibilityOfElementLocated(By element) {
-//        WebDriverWait wait = new WebDriverWait(getDriver(), Constants.WAIT);
+    //    public void waitForVisibilityOfElementLocated(By element) {
+//        WebDriverWait wait = new WebDriverWait(driver, Constants.WAIT);
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 //    }
 
+    public void longClick(By element) {
+        WebElement ele = driver.findElement(element);
+        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) ele).getId(),
+                "duration", 2000
+        ));
+
+        //ios
+        /*((JavascriptExecutor)driver).executeScript("mobile: touchAndHold", ImmutableMap.of(
+                "element", ((RemoteWebElement) ele).getId(),
+                "duration", 2000
+        ));*/
+
+    }
+
     public void clickElement(By element) {
         //waitForVisibilityOfElementLocated(element);
-        getDriver().findElement(element).click();
+        driver.findElement(element).click();
         ExtentReport.getTest().log(Status.INFO, element + " clicked successful");
     }
 
     public void enterValue(By element, String value) {
 //        waitForVisibilityOfElementLocated(element);
-        getDriver().findElement(element).sendKeys(value);
+        driver.findElement(element).sendKeys(value);
         ExtentReport.getTest().log(Status.INFO, value + " entered successful");
     }
 
     public WebElement getElement(By element) {
 //        waitForVisibilityOfElementLocated(element);
-        return getDriver().findElement(element);
+        return driver.findElement(element);
     }
 
     public void scrollToElement(String textToScroll) {
 
-        getDriver().findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + textToScroll + "\"))"));
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + textToScroll + "\"))"));
+
+        //ios
+        /*WebElement ele = "somting";
+        Map<String, Objects> map = new HashMap<>();
+        map.put("element", ((RemoteWebElement) ele).getId());
+        map.put("direction", "down");
+        ((JavascriptExecutor)driver).executeScript("mobile: scroll", map
+        ));*/
+
     }
 
 
@@ -67,7 +96,7 @@ public class HelperMethods extends BaseTest {
         return jsonObject;
     }
 
-    public Properties readPropertiesFile(String fileName) throws IOException {
+    public static Properties readPropertiesFile(String fileName) throws IOException {
         FileInputStream fis = null;
         Properties prop = null;
         try {
@@ -84,18 +113,5 @@ public class HelperMethods extends BaseTest {
         return prop;
     }
 
-    public AppiumDriverLocalService startAppiumServer() {
-        AppiumServiceBuilder builder = new AppiumServiceBuilder();
-        builder
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                .usingDriverExecutable(new File("/usr/local/opt/node@16/bin/node"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
-                .withArgument(GeneralServerFlag.BASEPATH, "/wd/hub")
-                .withLogFile(new File("appiumLogs.txt"))
-                .withTimeout(Duration.ofSeconds(10000))
-                .withArgument (GeneralServerFlag.LOG_LEVEL, "debug");
 
-        return AppiumDriverLocalService.buildService(builder);
-    }
 }
